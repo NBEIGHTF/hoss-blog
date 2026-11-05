@@ -100,3 +100,13 @@
   .prose { font-size: 16px; }
   .foot { padding: 16px; flex-direction: column; }
 }
+
+/* Article video: our own thumbnail until the reader presses play. */
+.video { margin: 4px 0 0; max-width: 64ch; display: flex; flex-direction: column; gap: 8px; }
+.video button, .video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 22px; overflow: hidden; background: var(--sunk); padding: 0; position: relative; }
+.video img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video .play { position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--signal); box-shadow: var(--shadow-pop); }
+.video .play::after { content: ""; position: absolute; left: 31px; top: 24px; border-style: solid; border-width: 14px 0 14px 22px; border-color: transparent transparent transparent var(--on-ink); }
+.video button:hover .play { transform: scale(1.06); }
+.video figcaption { font-size: 12.5px; color: var(--muted); }
+.video figcaption a { color: var(--ink-2); }

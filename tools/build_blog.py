@@ -107,6 +107,20 @@ def index_page(articles, path="/", noindex=False):
     ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": SITE_NAME, "url": BASE + "/", "description": SITE_DESC, "publisher": PUBLISHER}]
     return page("Hoss: what the crew learned", path, SITE_DESC, body, "articles", ld=ld, index=not noindex)
 
+# The video shows our own thumbnail and loads nothing from YouTube until the reader clicks play.
+def video_block(a):
+    v = a.get("video")
+    if not v or not v.get("id"):
+        return ""
+    vid, title = e(v["id"]), e(a["title"])
+    return (f'<figure class="video"><button type="button" data-yt="{vid}" aria-label="Play the video: {title}">'
+            '<img src="thumb.jpg" alt="" width="1280" height="720" loading="lazy"><span class="play" aria-hidden="true"></span></button>'
+            f'<figcaption>The video version, voiced by the crew · <a href="https://www.youtube.com/watch?v={vid}">watch on YouTube</a></figcaption></figure>'
+            '<script>document.querySelectorAll("button[data-yt]").forEach(function (b) { b.addEventListener("click", function () {'
+            ' var f = document.createElement("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&rel=0";'
+            ' f.title = b.getAttribute("aria-label"); f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;'
+            ' b.replaceWith(f); }); });</script>')
+
 def article_page(a, more, path, noindex=False):
     c, k = BY[a["author"]], BY[a["checker"]]
     learned = "".join(f"<li>{x}</li>" for x in a["learned"])
@@ -117,6 +131,7 @@ def article_page(a, more, path, noindex=False):
 <h1 class="post-title">{e(a["title"])}</h1>
 <p class="dek">{e(a["dek"])}</p>
 <div class="byline">{face(c["slug"], c["name"])}<span><b>{c["name"]}</b><small>{c["beat"]} · <time datetime="{a["date"]}">{nice(a["date"])}</time></small></span><span class="chip checked">{face(k["slug"])}Fact-checked by {k["name"]}</span></div>
+{video_block(a)}
 <aside class="learned" aria-label="What I learned"><div class="sec-l"><span>What I learned</span></div><ul>{learned}</ul></aside>
 <div class="prose">{a["html"]}</div>
 <section class="sources"><div class="sec-l"><h2>Sources</h2></div><ol>{sources}</ol></section>
@@ -130,6 +145,11 @@ def article_page(a, more, path, noindex=False):
         "publisher": PUBLISHER, "articleSection": a["topic"],
         "citation": [u for _, u in a["sources"]],
     }]
+    v = a.get("video")
+    if v and v.get("id"):
+        ld.append({"@context": "https://schema.org", "@type": "VideoObject", "name": a["title"], "description": a["dek"],
+                   "thumbnailUrl": BASE + a["href"] + "thumb.jpg", "uploadDate": v.get("uploaded", a["date"]), "duration": v.get("duration", ""),
+                   "contentUrl": f"https://www.youtube.com/watch?v={v['id']}", "embedUrl": f"https://www.youtube-nocookie.com/embed/{v['id']}"})
     return page(f'{a["title"]} · Hoss', path, a["dek"], body, og_type="article", ld=ld, index=not noindex)
 
 ABOUT = '''<div class="pane-h"><div><h1>About Hoss</h1>
