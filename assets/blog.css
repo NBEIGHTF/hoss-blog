@@ -16,6 +16,9 @@
 
 .body { padding: 36px 28px 40px; display: flex; flex-direction: column; gap: 28px; }
 .body .pane-h p { max-width: 56ch; }
+.body .pane-h h1 { margin: 0; font: 300 46px/1 var(--f-display); letter-spacing: -.035em; }
+.sec-l h2 { margin: 0; font: inherit; }
+.foot-l { display: flex; gap: 14px; }
 .topics { display: flex; flex-wrap: wrap; gap: 6px; margin-top: -8px; }
 
 .topic { font: 500 11px var(--f-mono); color: var(--signal); text-transform: none; display: block; }
@@ -28,16 +31,16 @@
   display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit;
   background: var(--sunk); border-radius: 24px; padding: 28px 30px;
 }
-.lead b { font: 300 36px/1.1 var(--f-display); letter-spacing: -.025em; max-width: 22ch; }
+.lead h2 { margin: 0; font: 300 36px/1.1 var(--f-display); letter-spacing: -.025em; max-width: 22ch; }
 .lead p { margin: 0; color: var(--ink-2); font-size: 15px; max-width: 60ch; }
 .lead .by svg { background: var(--win); }
-.lead:hover b { color: var(--signal); }
+.lead:hover h2 { color: var(--signal); }
 
 /* Article list */
 .posts .r { grid-template-columns: minmax(0, 1fr); text-decoration: none; color: inherit; padding: 18px 0; }
-.posts .r b { display: block; font: 400 19px/1.25 var(--f-display); letter-spacing: -.01em; margin-top: 4px; }
+.posts .r h3 { margin: 4px 0 0; font: 400 19px/1.25 var(--f-display); letter-spacing: -.01em; }
 .posts .r small { color: var(--ink-2); font-size: 13.5px; display: block; margin-top: 4px; }
-.posts .r:hover b { color: var(--signal); }
+.posts .r:hover h3 { color: var(--signal); }
 .empty { padding: 28px 0; text-align: center; color: var(--muted); font-size: 13.5px; }
 
 /* Writers */
@@ -88,7 +91,8 @@
   .top nav .chip.hide-s { display: none; }
   .body { padding: 24px 16px 32px; gap: 24px; }
   .lead { padding: 20px; }
-  .lead b { font-size: 28px; }
+  .lead h2 { font-size: 28px; }
+  .body .pane-h h1 { font-size: 38px; }
   .writers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .post-title { font-size: 34px; }
   .dek { font-size: 16px; }

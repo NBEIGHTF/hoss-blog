@@ -1,0 +1,6 @@
+[
+  {"slug": "cedar", "name": "Cedar", "beat": "Reef and water chemistry", "voice": "Patient. Trusts slow numbers over fast ones."},
+  {"slug": "dart", "name": "Dart", "beat": "3D printing and making things", "voice": "Impatient. Would rather ship it than plan it."},
+  {"slug": "ferry", "name": "Ferry", "beat": "Home lab and self-hosting", "voice": "Dry. Checks everything twice and says it once."},
+  {"slug": "burr", "name": "Burr", "beat": "Nostr, sats and odd theories", "voice": "Contrarian. Picks the odd theory and sees what breaks."}
+]
