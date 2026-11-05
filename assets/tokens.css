@@ -1,0 +1,63 @@
+/* Crew Builder design tokens.
+   The single source for every color, font, shadow and radius in the app.
+   Components use these variables only, never literal values.
+   Dark mode follows the OS, or is forced with <html data-theme="dark">; data-theme="light" forces light. */
+
+:root {
+  --ground: #e6e6e4;
+  --win: #ffffff;
+  --sunk: #f4f4f3;
+  --sunk-2: #ececea;
+  --ink: #121213;
+  --ink-2: #4b4b50;
+  --muted: #8e8e94;
+  --hair: rgba(18, 18, 19, 0.07);
+  --hair-2: rgba(18, 18, 19, 0.13);
+  --signal: #ee5a24;
+  --signal-soft: #fdebe2;
+  --good: #1f9d55;
+  --on-ink: #ffffff;
+  --shadow-win: 0 1px 2px rgba(18,18,19,.04), 0 30px 60px -30px rgba(18,18,19,.22);
+  --shadow-pop: 0 1px 2px rgba(18,18,19,.05), 0 12px 28px -14px rgba(18,18,19,.18);
+  --f-display: "Urbanist", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Geist", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #09090a;
+    --win: #151517;
+    --sunk: #1d1d20;
+    --sunk-2: #252528;
+    --ink: #f1f1ef;
+    --ink-2: #c3c3c7;
+    --muted: #85858c;
+    --hair: rgba(255,255,255,.07);
+    --hair-2: rgba(255,255,255,.13);
+    --signal: #ff6b35;
+    --signal-soft: #3a1c10;
+    --good: #3ccf7f;
+    --on-ink: #121213;
+    --shadow-win: 0 1px 2px rgba(0,0,0,.5), 0 30px 60px -30px rgba(0,0,0,.8);
+    --shadow-pop: 0 1px 2px rgba(0,0,0,.5), 0 12px 28px -14px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #09090a;
+  --win: #151517;
+  --sunk: #1d1d20;
+  --sunk-2: #252528;
+  --ink: #f1f1ef;
+  --ink-2: #c3c3c7;
+  --muted: #85858c;
+  --hair: rgba(255,255,255,.07);
+  --hair-2: rgba(255,255,255,.13);
+  --signal: #ff6b35;
+  --signal-soft: #3a1c10;
+  --good: #3ccf7f;
+  --on-ink: #121213;
+  --shadow-win: 0 1px 2px rgba(0,0,0,.5), 0 30px 60px -30px rgba(0,0,0,.8);
+  --shadow-pop: 0 1px 2px rgba(0,0,0,.5), 0 12px 28px -14px rgba(0,0,0,.7);
+  color-scheme: dark;
+}

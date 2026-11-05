@@ -1,0 +1,82 @@
+/* Blog layout on top of the unchanged kit (tokens.css + components.css). Only kit tokens, no literal colors. */
+
+.blog { min-height: 100%; padding: 24px; }
+.page {
+  width: min(980px, 100%); margin: 0 auto; background: var(--win);
+  border-radius: 28px; box-shadow: var(--shadow-win); overflow: hidden;
+}
+
+/* Top bar */
+.top { display: flex; align-items: center; gap: 12px; padding: 18px 28px; border-bottom: 1px solid var(--hair); }
+.top .logo { margin: 0; }
+.top .brand { font: 500 17px var(--f-display); letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
+.top nav { margin-left: auto; display: flex; gap: 6px; }
+.top nav a { text-decoration: none; }
+.top nav a[aria-current="page"] { background: var(--sunk); border-color: transparent; color: var(--ink); }
+
+.body { padding: 36px 28px 40px; display: flex; flex-direction: column; gap: 32px; }
+.body .pane-h p { max-width: 54ch; }
+
+/* Crew strip */
+.crew { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.mate {
+  background: var(--sunk); border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px;
+  position: relative;
+}
+.mate svg { width: 64px; height: 64px; border-radius: 18px; background: var(--win); }
+.mate b { font: 500 15px var(--f-display); }
+.mate .role { font-size: 12px; color: var(--muted); margin-top: -8px; }
+.mate p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+.mate .next {
+  position: absolute; top: 14px; right: 14px; font: 500 10.5px var(--f-mono); color: var(--signal);
+  background: var(--signal-soft); padding: 2px 8px; border-radius: 999px;
+}
+
+/* Post list */
+.posts .r { grid-template-columns: 40px minmax(0, 1fr) auto; text-decoration: none; color: inherit; }
+.posts .r svg { width: 40px; height: 40px; border-radius: 13px; background: var(--sunk); }
+.posts .r b { display: block; font-size: 15px; }
+.posts .r small { color: var(--muted); font-size: 12.5px; display: block; margin-top: 2px; }
+.posts .r:hover b { color: var(--signal); }
+.empty { padding: 28px 0; text-align: center; color: var(--muted); font-size: 13.5px; }
+
+/* Post page */
+.byline { display: flex; align-items: center; gap: 14px; }
+.byline svg { width: 56px; height: 56px; border-radius: 17px; background: var(--sunk); flex: none; }
+.byline b { font: 500 15px var(--f-display); display: block; }
+.byline small { font-size: 12.5px; color: var(--muted); }
+.post-title { margin: 0; font: 300 44px/1.05 var(--f-display); letter-spacing: -.03em; max-width: 20ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.prose { max-width: 64ch; font-size: 16px; line-height: 1.7; color: var(--ink); }
+.prose h2 { font: 400 24px/1.2 var(--f-display); letter-spacing: -.015em; margin: 36px 0 8px; }
+.prose p { margin: 0 0 16px; }
+.prose a { color: var(--signal); }
+.prose code { font: 400 13.5px var(--f-mono); background: var(--sunk); padding: 1px 6px; border-radius: 6px; }
+.prose blockquote { margin: 20px 0; padding: 2px 0 2px 16px; border-left: 2px solid var(--signal); color: var(--ink-2); }
+.prose ul { padding-left: 20px; margin: 0 0 16px; }
+
+/* Chat excerpt inside a post: the app's message bubbles */
+.excerpt {
+  background: var(--sunk); border-radius: 22px; padding: 16px 18px; margin: 24px 0;
+  display: flex; flex-direction: column; gap: 12px; font-size: 14px;
+}
+.excerpt .bubble { background: var(--win); }
+.excerpt .sec-l { padding: 0; }
+
+.foot { border-top: 1px solid var(--hair); padding: 18px 28px; display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); }
+.foot a { color: var(--ink-2); }
+
+@media (max-width: 899px) {
+  .blog { padding: 0; }
+  .page { border-radius: 0; box-shadow: none; min-height: 100vh; }
+  .top { padding: 14px 16px; }
+  .top nav .chip.hide-s { display: none; }
+  .body { padding: 24px 16px 32px; gap: 26px; }
+  .crew { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .posts .r { grid-template-columns: 40px minmax(0, 1fr); row-gap: 4px; }
+  .posts .r .mono { grid-column: 2; font-size: 11.5px; color: var(--muted); }
+  .post-title { font-size: 32px; }
+  .prose { font-size: 15.5px; }
+  .foot { padding: 16px; flex-direction: column; }
+}
