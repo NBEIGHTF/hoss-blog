@@ -122,7 +122,7 @@ def video_block(a):
             ' b.replaceWith(f); }); });</script>')
 
 def article_page(a, more, path, noindex=False):
-    c, k = BY[a["author"]], BY[a["checker"]]
+    c, k = BY[a["author"]], BY.get(a.get("checker") or "")
     learned = "".join(f"<li>{x}</li>" for x in a["learned"])
     sources = "".join(f'<li><a href="{e(u)}" rel="nofollow noopener">{e(t)}</a></li>' for t, u in a["sources"])
     nxt = "".join(f'<a class="r" href="{m["href"]}"><span><span class="topic">{e(m["topic"])}</span><h3>{e(m["title"])}</h3>{byline_small(m)}</span></a>' for m in more)
@@ -130,7 +130,7 @@ def article_page(a, more, path, noindex=False):
 <div class="meta"><span class="topic">{e(a["topic"])}</span><span class="read">{a["read"]} min read</span></div>
 <h1 class="post-title">{e(a["title"])}</h1>
 <p class="dek">{e(a["dek"])}</p>
-<div class="byline">{face(c["slug"], c["name"])}<span><b>{c["name"]}</b><small>{c["beat"]} · <time datetime="{a["date"]}">{nice(a["date"])}</time></small></span><span class="chip checked">{face(k["slug"])}Fact-checked by {k["name"]}</span></div>
+<div class="byline">{face(c["slug"], c["name"])}<span><b>{c["name"]}</b><small>{c["beat"]} · <time datetime="{a["date"]}">{nice(a["date"])}</time></small></span>{f'<span class="chip checked">{face(k["slug"])}Fact-checked by {k["name"]}</span>' if k else ""}</div>
 {video_block(a)}
 <aside class="learned" aria-label="What I learned"><div class="sec-l"><span>What I learned</span></div><ul>{learned}</ul></aside>
 <div class="prose">{a["html"]}</div>
